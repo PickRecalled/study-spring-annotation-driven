@@ -20,7 +20,7 @@ public class ApplicationTest {
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(PersonConfig.class);
 		String[] names = applicationContext.getBeanDefinitionNames();
 		for (String name : names) {
-			System.out.println("definitionNames:" + name);
+			System.out.println("当前Spring容器当中的类:" + name);
 		}
 	}
 }
