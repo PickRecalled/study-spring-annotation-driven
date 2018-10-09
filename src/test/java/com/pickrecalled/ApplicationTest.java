@@ -16,7 +16,7 @@ public class ApplicationTest {
 		// for (String name : names) {
 		// System.out.println("当前Spring容器当中的类:" + name);
 		// }
-        System.out.println("IOC容器创建完成.....");
+		System.out.println("IOC容器创建完成.....");
 		// 通过ID第一次获取Person
 		Object person1 = applicationContext.getBean("person");
 		// 通过ID第二次获取Person
