@@ -1,8 +1,6 @@
 package com.pickrecalled;
 
-import com.pickrecalled.config.ConditionalPersonConfig;
-import com.pickrecalled.config.PersonConfig;
-import com.pickrecalled.config.ScopePersonConfig;
+import com.pickrecalled.config.*;
 import com.pickrecalled.model.Person;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -12,6 +10,18 @@ import org.springframework.core.env.Environment;
 import java.util.Map;
 
 public class ApplicationTest {
+
+	@Test
+	public void testImport() {
+		// annotation方式获取
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ImportConfig.class);
+		String[] names = applicationContext.getBeanDefinitionNames();
+		for (String name : names) {
+			System.out.println("当前Spring容器当中组件名称:" + name);
+		}
+		Blue bean = applicationContext.getBean(Blue.class);
+		System.out.println("从容器中获取Blue对象：" + bean);
+	}
 
 	@Test
 	public void testConditionalPerson() {
