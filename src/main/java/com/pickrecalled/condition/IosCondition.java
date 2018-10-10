@@ -7,8 +7,6 @@ import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.env.Environment;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-import java.util.Map;
-
 /**
  * IOS Condition 判断当前操作系统是不是IOS系统
  */
@@ -23,9 +21,6 @@ public class IosCondition implements Condition {
 	 */
 	@Override
 	public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-		Map<String, Object> jobs = metadata.getAnnotationAttributes("jobs");
-		System.out.println("jobs：" + jobs);
-
 		// 能获取到IOC容器使用的Bean工厂，beanFactory就是创建对象以及装配的工厂
 		ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 
