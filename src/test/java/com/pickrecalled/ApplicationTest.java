@@ -1,12 +1,41 @@
 package com.pickrecalled;
 
+import com.pickrecalled.config.ConditionalPersonConfig;
 import com.pickrecalled.config.PersonConfig;
 import com.pickrecalled.config.ScopePersonConfig;
+import com.pickrecalled.model.Person;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.Environment;
+
+import java.util.Map;
 
 public class ApplicationTest {
+
+	@Test
+	public void testConditionalPerson() {
+		// annotation方式获取
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ConditionalPersonConfig.class);
+
+		// 获取IOC的运行环境
+		Environment environment = applicationContext.getEnvironment();
+
+		// 在当前IOC环境当中获取操作系统名称的变量
+		String osName = environment.getProperty("os.name");
+		System.out.println("IOC容器当中获取到当前操作系统的名称：" + osName);
+
+		// 按类型获取容器当中所有person的定义
+		String[] beanNamesForType = applicationContext.getBeanNamesForType(Person.class);
+		for (String names : beanNamesForType) {
+			System.out.println("容器当中存在的Person对象名：" + names);
+		}
+
+		// 按类型获取容器当中所有person的对象
+		Map<String, Person> beansOfType = applicationContext.getBeansOfType(Person.class);
+		System.out.println("容器当中存在的Person对象：" + beansOfType);
+
+	}
 
 	@Test
 	public void testScopePerson() {
