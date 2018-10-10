@@ -12,6 +12,27 @@ import java.util.Map;
 public class ApplicationTest {
 
 	@Test
+	public void testFactoryBean() {
+		// annotation方式获取
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
+		String[] names = applicationContext.getBeanDefinitionNames();
+		for (String name : names) {
+			System.out.println("当前Spring容器当中组件名称:" + name);
+		}
+
+        Object colorBean = applicationContext.getBean("colorFactoryBean");
+        System.out.println("colorFactoryBean的类型：" + colorBean.getClass());
+
+		Object colorFactoryBean = applicationContext.getBean("&colorFactoryBean");
+		System.out.println("colorFactoryBean本身的类型：" + colorFactoryBean.getClass());
+
+		Object bean1 = applicationContext.getBean("colorFactoryBean");
+		Object bean2 = applicationContext.getBean("colorFactoryBean");
+		System.out.println("Bean工厂创建的对象是否相等：" + (bean1 == bean2));
+
+	}
+
+	@Test
 	public void testImport() {
 		// annotation方式获取
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ImportConfig.class);
