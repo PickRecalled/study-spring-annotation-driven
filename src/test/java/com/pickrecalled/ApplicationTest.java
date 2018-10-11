@@ -12,6 +12,30 @@ import java.util.Map;
 public class ApplicationTest {
 
 	@Test
+	public void testValue() {
+		// 创建IOC容器
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(ValuePersonConfig.class);
+
+		// 获取容器当中的Bean
+		String[] names = applicationContext.getBeanDefinitionNames();
+		for (String name : names) {
+			System.out.println("当前Spring容器当中组件名称:" + name);
+		}
+
+		// 获取容器当中的对象
+		Person person = (Person) applicationContext.getBean("person");
+		System.out.println("获取到person对象：" + person);
+
+		// 获取运行时环境变量
+		Environment environment = applicationContext.getEnvironment();
+		String nickName = environment.getProperty("nick.name");
+		System.out.println("通过运行时环境变量获取properties文件中的值：" + nickName);
+
+		// 关闭容器
+		((AnnotationConfigApplicationContext) applicationContext).close();
+	}
+
+	@Test
 	public void testBeanLeftCycle() {
 		// 创建IOC容器
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanconfigOfLifeCycle.class);
