@@ -12,6 +12,20 @@ import java.util.Map;
 public class ApplicationTest {
 
 	@Test
+	public void testBeanLeftCycle() {
+		// 创建IOC容器
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanconfigOfLifeCycle.class);
+		System.out.println("容器创建完成....");
+
+		// 获取car对象
+		Object car = applicationContext.getBean("car");
+		System.out.println("获取car对象：" + car);
+
+		// 关闭容器
+		((AnnotationConfigApplicationContext) applicationContext).close();
+	}
+
+	@Test
 	public void testFactoryBean() {
 		// annotation方式获取
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(FactoryBeanConfig.class);
@@ -20,8 +34,8 @@ public class ApplicationTest {
 			System.out.println("当前Spring容器当中组件名称:" + name);
 		}
 
-        Object colorBean = applicationContext.getBean("colorFactoryBean");
-        System.out.println("colorFactoryBean的类型：" + colorBean.getClass());
+		Object colorBean = applicationContext.getBean("colorFactoryBean");
+		System.out.println("colorFactoryBean的类型：" + colorBean.getClass());
 
 		Object colorFactoryBean = applicationContext.getBean("&colorFactoryBean");
 		System.out.println("colorFactoryBean本身的类型：" + colorFactoryBean.getClass());
