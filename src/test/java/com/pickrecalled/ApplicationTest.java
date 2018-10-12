@@ -1,5 +1,9 @@
 package com.pickrecalled;
 
+import com.pickrecalled.bean.Blue;
+import com.pickrecalled.bean.Boss;
+import com.pickrecalled.bean.Car;
+import com.pickrecalled.bean.Color;
 import com.pickrecalled.config.*;
 import com.pickrecalled.model.Person;
 import com.pickrecalled.service.impl.BookServiceImpl;
@@ -11,6 +15,21 @@ import org.springframework.core.env.Environment;
 import java.util.Map;
 
 public class ApplicationTest {
+
+	@Test
+	public void testAutowiredMethod() {
+		// 创建IOC容器
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig.class);
+		Boss boss = applicationContext.getBean(Boss.class);
+		System.out.println("容器当中Boss的Car：" + boss);
+
+		Car car = applicationContext.getBean(Car.class);
+		System.out.println("容器当中Car：" + car);
+
+		Color color = applicationContext.getBean(Color.class);
+		System.out.println("容器当中Color的Car：" + color);
+
+	}
 
 	@Test
 	public void testAutowired() {
@@ -58,7 +77,7 @@ public class ApplicationTest {
 	@Test
 	public void testBeanLeftCycle() {
 		// 创建IOC容器
-		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(BeanconfigOfLifeCycle.class);
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(LifeCycleBeanConfig.class);
 		System.out.println("容器创建完成....");
 
 		// 获取car对象

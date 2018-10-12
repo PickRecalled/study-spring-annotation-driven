@@ -1,4 +1,4 @@
-package com.pickrecalled.config;
+package com.pickrecalled.bean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

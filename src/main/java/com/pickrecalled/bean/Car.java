@@ -1,5 +1,8 @@
-package com.pickrecalled.config;
+package com.pickrecalled.bean;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Car {
 
 	/**

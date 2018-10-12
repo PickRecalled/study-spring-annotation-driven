@@ -1,4 +1,4 @@
-package com.pickrecalled.config;
+package com.pickrecalled.bean;
 
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;

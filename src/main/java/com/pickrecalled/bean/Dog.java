@@ -1,4 +1,4 @@
-package com.pickrecalled.config;
+package com.pickrecalled.bean;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
