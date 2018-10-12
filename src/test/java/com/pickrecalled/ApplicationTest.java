@@ -2,6 +2,7 @@ package com.pickrecalled;
 
 import com.pickrecalled.config.*;
 import com.pickrecalled.model.Person;
+import com.pickrecalled.service.impl.BookServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -10,6 +11,25 @@ import org.springframework.core.env.Environment;
 import java.util.Map;
 
 public class ApplicationTest {
+
+	@Test
+	public void testAutowired() {
+		// 创建IOC容器
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig.class);
+
+		BookServiceImpl bookService = applicationContext.getBean(BookServiceImpl.class);
+		System.out.println("BookServiceImpl中的BookDao：" + bookService);
+
+		// BookDao bookDao = applicationContext.getBean(BookDao.class);
+		// System.out.println("BookDao中的Dao：" + bookDao);
+
+		// 获取容器当中的Bean
+		String[] names = applicationContext.getBeanDefinitionNames();
+		for (String name : names) {
+			System.out.println("当前Spring容器当中组件名称:" + name);
+		}
+
+	}
 
 	@Test
 	public void testValue() {
