@@ -2,15 +2,17 @@ package com.pickrecalled.service.impl;
 
 import com.pickrecalled.dao.BookDao;
 import com.pickrecalled.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
 
 @Service
 public class BookServiceImpl implements BookService {
 
-	@Autowired(required = false)
-	@Qualifier("bookDao")
+	// @Autowired(required = false)
+	// @Qualifier("bookDao")
+	// @Resource
+    @Inject
 	private BookDao bookDao;
 
 	public void testGetBookDaoObject() {
