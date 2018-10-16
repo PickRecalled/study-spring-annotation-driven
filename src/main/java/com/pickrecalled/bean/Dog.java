@@ -1,11 +1,17 @@
 package com.pickrecalled.bean;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 
 @Resource
-public class Dog {
+public class Dog implements ApplicationContextAware {
+
+	private ApplicationContext applicationContext;
 
 	/**
 	 * 构造器
@@ -28,5 +34,10 @@ public class Dog {
 	@PreDestroy
 	public void destroy() {
 		System.out.println("Dog  @PreDestroy ......");
+	}
+
+	@Override
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
 	}
 }
