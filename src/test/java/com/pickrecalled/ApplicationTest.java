@@ -17,6 +17,27 @@ import java.util.Map;
 public class ApplicationTest {
 
 	@Test
+	public void testProfile() {
+		// 1.创建容器对象
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
+		// 2.设置需要激活的环境
+		applicationContext.getEnvironment().setActiveProfiles("test");
+		// 3.注册主配置类
+		applicationContext.register(ProfileConfig.class);
+		// 4.启动刷新容器
+		applicationContext.refresh();
+
+		// String[] beanNamesForType = applicationContext.getBeanNamesForType(DataSource.class);
+		// for (String name : beanNamesForType) {
+		// System.out.println("当前Spring容器当中组件名称:" + name);
+		// }
+		String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+		for (String beanDefinitionName : beanDefinitionNames) {
+			System.out.println("当前Spring容器当中组件名称:" + beanDefinitionName);
+		}
+	}
+
+	@Test
 	public void testAutowiredMethod() {
 		// 创建IOC容器
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AutowiredConfig.class);
