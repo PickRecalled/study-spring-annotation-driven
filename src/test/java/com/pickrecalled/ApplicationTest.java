@@ -1,5 +1,6 @@
 package com.pickrecalled;
 
+import com.pickrecalled.aop.MathCalculator;
 import com.pickrecalled.bean.Blue;
 import com.pickrecalled.bean.Boss;
 import com.pickrecalled.bean.Car;
@@ -15,6 +16,16 @@ import org.springframework.core.env.Environment;
 import java.util.Map;
 
 public class ApplicationTest {
+
+	@Test
+	public void testAop() {
+		// 创建容器对象
+		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AopConfig.class);
+		// 从容器中获取组件
+		MathCalculator bean = applicationContext.getBean(MathCalculator.class);
+		int div = bean.div(10, 0);
+		System.out.println("运行后的结果：" + div);
+	}
 
 	@Test
 	public void testProfile() {
